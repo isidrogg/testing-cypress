@@ -14,18 +14,21 @@
 
 const { startDevServer } = require('@cypress/webpack-dev-server')
 const webpackConfig = require('@vue/cli-service/webpack.config.js')
+const cucumber = require('cypress-cucumber-preprocessor').default
 
 /**
  * @type {Cypress.PluginConfig}
  */
 // eslint-disable-next-line no-unused-vars
 module.exports = (on, config) => {
-  on('dev-server:start', options =>
+  on("dev-server:start", (options) =>
     startDevServer({
       options,
-      webpackConfig
+      webpackConfig,
     })
-  )
+  );
 
-  return config
-}
+  on('file:preprocessor', cucumber());
+
+  return config;
+};

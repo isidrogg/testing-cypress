@@ -1,11 +1,9 @@
-import { mount } from "@cypress/vue";
-import HelloWorld from "../../src/components/HelloWorld.vue";
+describe("HelloWorld", () => {
 
-describe("Open the web", () => {
-  beforeEach(() => {
+  it("renders a message", () => {
     cy.visit("http://localhost:8080/");
-  });
-  it("should open the correct page ", () => {
-    cy.title().should("eq", "Capital Quiz");
+    
+    const msg = "Welcome to Your Vue.js App";
+    cy.get("h1").should("have.text", msg);
   });
 });
